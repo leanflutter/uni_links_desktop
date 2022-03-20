@@ -12,6 +12,9 @@ bool _initialUriIsHandled = false;
 void main() {
   if (Platform.isMacOS || Platform.isWindows) {
     enableUniLinksDesktop();
+    if (Platform.isWindows) {
+      registerProtocol('unilinks');
+    }
   }
   runApp(MaterialApp(home: MyApp()));
 }
@@ -266,6 +269,8 @@ List<String>? getCmds() {
     cmdSuffix = "'";
   } else if (Platform.isMacOS) {
     cmd = 'open';
+  } else if (Platform.isWindows) {
+    cmd = 'start';
   } else {
     return null;
   }

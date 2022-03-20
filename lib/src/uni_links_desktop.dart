@@ -9,6 +9,10 @@ void enableUniLinksDesktop() {
   UniLinksPlatform.instance = UniLinksDesktop();
 }
 
+void registerProtocol(String scheme) {
+  protocolHandler.register(scheme);
+}
+
 class UniLinksDesktop extends UniLinksPlatform with ProtocolListener {
   /// Registers this class as the default instance of [UniLinksDesktop].
   static void registerWith() {
