@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  protocol_handler: ^0.1.1
+  protocol_handler: ^0.1.2
   uni_links_platform_interface: ^1.0.0
 
 dev_dependencies:

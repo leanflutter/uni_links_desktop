@@ -29,7 +29,8 @@ class UniLinksDesktop extends UniLinksPlatform with ProtocolListener {
   Future<String?> getInitialLink() => protocolHandler.getInitialUrl();
 
   @override
-  Stream<String?> get linkStream => _linkStreamController.stream;
+  Stream<String?> get linkStream =>
+      _linkStreamController.stream.asBroadcastStream();
 
   @override
   void onProtocolUrlReceived(String url) {

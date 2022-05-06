@@ -141,7 +141,7 @@ packages:
       name: protocol_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -209,7 +209,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.1.1"
   uni_links_platform_interface:
     dependency: transitive
     description:
