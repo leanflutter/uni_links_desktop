@@ -1,3 +1,5 @@
+#include <windows.h>
+
 #ifndef FLUTTER_PLUGIN_UNI_LINKS_DESKTOP_PLUGIN_H_
 #define FLUTTER_PLUGIN_UNI_LINKS_DESKTOP_PLUGIN_H_
 
@@ -15,6 +17,9 @@ extern "C" {
 
 FLUTTER_PLUGIN_EXPORT void UniLinksDesktopPluginRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar);
+
+#define UNI_LINKS_DESKTOP_MSG_ID (WM_USER + 2)
+FLUTTER_PLUGIN_EXPORT void DispatchToUniLinksDesktop(HWND hwnd);
 
 #if defined(__cplusplus)
 }  // extern "C"
