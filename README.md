@@ -41,7 +41,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  uni_links_desktop: ^0.1.2
+  uni_links_desktop: ^0.1.3
 ```
 
 Or
@@ -59,16 +59,18 @@ dependencies:
 ```dart
 import 'package:uni_links_desktop/uni_links_desktop.dart';
 
-void main() {
-  if (Platform.isMacOS || Platform.isWindows) {
-    enableUniLinksDesktop();
-    if (Platform.isWindows) {
-      registerProtocol('unilinks');
-    }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows) {
+    registerProtocol('unilinks');
   }
 
-  runApp(MyApp());
+  runApp(const MaterialApp(
+    home: MyApp(),
+  ));
 }
+
 ```
 
 > Just add these extra steps, see [uni_links](https://github.com/avioli/uni_links/tree/master/uni_links) for other usage
@@ -138,13 +140,13 @@ Change the file `windows/runner/main.cpp` as follows:
 #include "flutter_window.h"
 #include "utils.h"
 
-+#include <protocol_handler/protocol_handler_plugin.h>
++#include <uni_links_desktop/uni_links_desktop_plugin.h>
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
 +  HWND hwnd = ::FindWindow(L"FLUTTER_RUNNER_WIN32_WINDOW", L"uni_links_desktop_example");
 +  if (hwnd != NULL) {
-+    DispatchToProtocolHandler(hwnd);
++    DispatchToUniLinksDesktop(hwnd);
 +
 +    ::ShowWindow(hwnd, SW_NORMAL);
 +    ::SetForegroundWindow(hwnd);
