@@ -1,1 +1,1 @@
-export 'src/uni_links_desktop.dart';
+export 'src/register_protocol.dart';

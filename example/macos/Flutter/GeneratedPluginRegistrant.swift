@@ -5,8 +5,8 @@
 import FlutterMacOS
 import Foundation
 
-import protocol_handler
+import uni_links_desktop
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  ProtocolHandlerPlugin.register(with: registry.registrar(forPlugin: "ProtocolHandlerPlugin"))
+  UniLinksDesktopPlugin.register(with: registry.registrar(forPlugin: "UniLinksDesktopPlugin"))
 }

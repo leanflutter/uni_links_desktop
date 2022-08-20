@@ -6,9 +6,9 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <protocol_handler/protocol_handler_plugin.h>
+#include <uni_links_desktop/uni_links_desktop_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  ProtocolHandlerPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("ProtocolHandlerPlugin"));
+  UniLinksDesktopPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("UniLinksDesktopPlugin"));
 }

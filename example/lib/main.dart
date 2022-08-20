@@ -9,17 +9,21 @@ import 'package:uni_links_desktop/uni_links_desktop.dart';
 
 bool _initialUriIsHandled = false;
 
-void main() {
-  if (Platform.isMacOS || Platform.isWindows) {
-    enableUniLinksDesktop();
-    if (Platform.isWindows) {
-      registerProtocol('unilinks');
-    }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows) {
+    registerProtocol('unilinks');
   }
-  runApp(MaterialApp(home: MyApp()));
+
+  runApp(const MaterialApp(
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
