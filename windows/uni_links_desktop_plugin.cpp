@@ -23,10 +23,15 @@ class UniLinksDesktopPlugin : public flutter::Plugin,
 
   UniLinksDesktopPlugin(
       flutter::PluginRegistrarWindows* registrar,
-      std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel);
+      std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel,
+      std::unique_ptr<flutter::EventChannel<flutter::EncodableValue>> eventChannel);
 
   flutter::MethodChannel<flutter::EncodableValue>* channel() const {
     return channel_.get();
+  }
+
+  flutter::EventChannel<flutter::EncodableValue>* eventChannel() const {
+    return eventChannel_.get();
   }
 
   std::string UniLinksDesktopPlugin::GetInitialLink();
@@ -36,6 +41,8 @@ class UniLinksDesktopPlugin : public flutter::Plugin,
  private:
   flutter::PluginRegistrarWindows* registrar_;
   std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel_ =
+      nullptr;
+  std::unique_ptr<flutter::EventChannel<flutter::EncodableValue>> eventChannel_ =
       nullptr;
   std::unique_ptr<flutter::EventSink<flutter::EncodableValue>> event_sink_;
 
@@ -65,16 +72,14 @@ void UniLinksDesktopPlugin::RegisterWithRegistrar(
       registrar,
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
           registrar->messenger(), "uni_links/messages",
+          &flutter::StandardMethodCodec::GetInstance()),
+      std::make_unique<flutter::EventChannel<flutter::EncodableValue>>(
+          registrar->messenger(), "uni_links/events",
           &flutter::StandardMethodCodec::GetInstance()));
   plugin->channel()->SetMethodCallHandler(
       [plugin_pointer = plugin.get()](const auto& call, auto result) {
         plugin_pointer->HandleMethodCall(call, std::move(result));
       });
-
-  auto eventChannel =
-      std::make_unique<flutter::EventChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "uni_links/events",
-          &flutter::StandardMethodCodec::GetInstance());
 
   auto atreamHandler = std::make_unique<flutter::StreamHandlerFunctions<>>(
       [plugin_pointer = plugin.get()](
@@ -88,15 +93,16 @@ void UniLinksDesktopPlugin::RegisterWithRegistrar(
         return plugin_pointer->OnCancel(arguments);
       });
 
-  eventChannel->SetStreamHandler(std::move(atreamHandler));
+  plugin->eventChannel()->SetStreamHandler(std::move(atreamHandler));
 
   registrar->AddPlugin(std::move(plugin));
 }
 
 UniLinksDesktopPlugin::UniLinksDesktopPlugin(
     flutter::PluginRegistrarWindows* registrar,
-    std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel)
-    : registrar_(registrar), channel_(std::move(channel)) {
+    std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel,
+    std::unique_ptr<flutter::EventChannel<flutter::EncodableValue>> eventChannel)
+    : registrar_(registrar), channel_(std::move(channel)), eventChannel_(std::move(eventChannel)) {
   window_proc_id_ = registrar->RegisterTopLevelWindowProcDelegate(
       [this](HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) {
         return HandleWindowProc(hwnd, message, wparam, lparam);
