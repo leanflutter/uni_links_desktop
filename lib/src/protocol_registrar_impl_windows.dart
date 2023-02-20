@@ -25,7 +25,7 @@ class ProtocolRegistrarImplWindows extends ProtocolRegistrar {
     RegistryValue protocolCmdRegValue = RegistryValue(
       '',
       RegistryValueType.string,
-      '$appPath "%1"',
+      '"$appPath" "%1"',
     );
 
     final regKey = Registry.currentUser.createKey(protocolRegKey);
