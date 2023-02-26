@@ -1,3 +1,7 @@
+## 0.1.5
+
+* [windows] Add quotes to executable path #8
+
 ## 0.1.4
 
 * [windows] fix crash: win event channel #5
