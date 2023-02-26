@@ -1,6 +1,6 @@
 name: uni_links_desktop
 description: A desktop (supports macOS and Windows) implementation of uni_links plugin.
-version: 0.1.5
+version: 0.1.6
 homepage: https://github.com/leanflutter/uni_links_desktop
 
 platforms:

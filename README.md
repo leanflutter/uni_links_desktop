@@ -41,7 +41,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  uni_links_desktop: ^0.1.5
+  uni_links_desktop: ^0.1.6
 ```
 
 Or

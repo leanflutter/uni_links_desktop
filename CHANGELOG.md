@@ -1,3 +1,7 @@
+## 0.1.6
+
+* Make sure the web project build
+
 ## 0.1.5
 
 * [windows] Add quotes to executable path #8
