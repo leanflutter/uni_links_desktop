@@ -14,7 +14,7 @@ bool _initialUriIsHandled = false;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (Platform.isWindows) {
+  if (!kIsWeb && Platform.isWindows) {
     registerProtocol('unilinks');
   }
 
