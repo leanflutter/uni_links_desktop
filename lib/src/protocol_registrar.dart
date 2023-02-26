@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'protocol_registrar_impl_macos.dart';
-import 'protocol_registrar_impl_windows.dart';
+import 'package:uni_links_desktop/src/protocol_registrar_impl_macos.dart';
+import 'package:uni_links_desktop/src/protocol_registrar_impl_windows.dart';
 
 class ProtocolRegistrar {
   /// The shared instance of [ProtocolRegistrar].

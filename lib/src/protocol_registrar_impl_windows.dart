@@ -1,8 +1,7 @@
 import 'dart:io';
 
+import 'package:uni_links_desktop/src/protocol_registrar.dart';
 import 'package:win32_registry/win32_registry.dart';
-
-import 'protocol_registrar.dart';
 
 class ProtocolRegistrarImplWindows extends ProtocolRegistrar {
   ProtocolRegistrarImplWindows._();
