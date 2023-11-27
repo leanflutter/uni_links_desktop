@@ -5,7 +5,7 @@ import FlutterMacOS
 let kMessagesChannel = "uni_links/messages"
 let kEventsChannel = "uni_links/events"
 
-public class UniLinksDesktopPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
+public class UniLinksDesktopPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterAppLifecycleDelegate {
     private static var _instance: UniLinksDesktopPlugin?
     
     private var _eventSink: FlutterEventSink?;
@@ -17,11 +17,6 @@ public class UniLinksDesktopPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
         }
     }
     
-    override init(){
-        super.init();
-        NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleURLEvent(_:with:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
-    }
-    
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = UniLinksDesktopPlugin()
         
@@ -31,18 +26,24 @@ public class UniLinksDesktopPlugin: NSObject, FlutterPlugin, FlutterStreamHandle
         let chargingChannel = FlutterEventChannel(name: kEventsChannel, binaryMessenger: registrar.messenger);
         chargingChannel.setStreamHandler(instance);
         
+        registrar.addApplicationDelegate(instance);
+        
         _instance = instance
     }
     
-    @objc
-    public func handleURLEvent(_ event: NSAppleEventDescriptor, with replyEvent: NSAppleEventDescriptor) {
-        guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue else { return }
-        if (_initialUrl == nil) {
-            _initialUrl = urlString
+    public func handleOpen(_ urls: [URL]) -> Bool {
+        for url in urls {
+            let urlString = url.absoluteString;
+            if (_initialUrl == nil) {
+                _initialUrl = urlString
+            }
+            if (_eventSink != nil) {
+                _eventSink!(urlString)
+            }
         }
-        if (_eventSink != nil) {
-            _eventSink!(urlString)
-        }
+        
+        // mark all urls as consumed
+        return true;
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
