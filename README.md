@@ -4,11 +4,10 @@
 
 [pub-image]: https://img.shields.io/pub/v/uni_links_desktop.svg
 [pub-url]: https://pub.dev/packages/uni_links_desktop
-
 [discord-image]: https://img.shields.io/discord/884679008049037342.svg
 [discord-url]: https://discord.gg/zPa6EZ2jqb
 
-A desktop (supports macOS and Windows) implementation of [uni_links](https://github.com/leanflutter/uni_links_desktop) plugin.
+A desktop (supports macOS and Windows) implementation of [uni_links](https://pub.dev/packages/uni_links) plugin.
 
 ---
 
@@ -20,8 +19,8 @@ A desktop (supports macOS and Windows) implementation of [uni_links](https://git
   - [Quick Start](#quick-start)
     - [Installation](#installation)
     - [Usage](#usage)
-        - [macOS](#macos)
-        - [Windows](#windows)
+      - [macOS](#macos)
+      - [Windows](#windows)
   - [Who's using it?](#whos-using-it)
   - [License](#license)
 
@@ -31,7 +30,7 @@ A desktop (supports macOS and Windows) implementation of [uni_links](https://git
 
 | Linux | macOS | Windows |
 | :---: | :---: | :-----: |
-|   ➖   |   ✔️   |    ✔️    |
+|  ➖   |  ✔️   |   ✔️    |
 
 ## Quick Start
 
@@ -41,7 +40,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  uni_links_desktop: ^0.1.6
+  uni_links_desktop: ^0.1.7
 ```
 
 Or
