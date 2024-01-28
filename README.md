@@ -124,7 +124,6 @@ Change the file `macos/Runner/Info.plist` as follows:
 	<string>NSApplication</string>
 </dict>
 </plist>
-}
 ```
 
 ##### Windows
@@ -143,6 +142,7 @@ Change the file `windows/runner/main.cpp` as follows:
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
++  // Replace uni_links_desktop_example with your_window_title.
 +  HWND hwnd = ::FindWindow(L"FLUTTER_RUNNER_WIN32_WINDOW", L"uni_links_desktop_example");
 +  if (hwnd != NULL) {
 +    DispatchToUniLinksDesktop(hwnd);
@@ -187,6 +187,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   return EXIT_SUCCESS;
 }
 ```
+
+If you use `MSIX` to package your application, you need to add `protocol_activation` configuration in `msix_config`:
+
+```yaml
+msix_config:
+  protocol_activation: myprotocol
+```
+
+> See this issue for details: [YehudaKremer/msix#187](https://github.com/YehudaKremer/msix/issues/187)
 
 > Please see the example app of this plugin for a full example.
 
