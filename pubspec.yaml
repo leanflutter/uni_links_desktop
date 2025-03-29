@@ -1,21 +1,23 @@
 name: uni_links_desktop
-description: A desktop (supports macOS and Windows) implementation of uni_links plugin.
-version: 0.1.7
-homepage: https://github.com/leanflutter/uni_links_desktop
+description: A desktop implementation (supports macOS and Windows) of the uni_links plugin.
+version: 0.2.0
+homepage: https://leanflutter.dev/documentation/uni_links_desktop
+repository: https://github.com/leanflutter/uni_links_desktop
+issue_tracker: https://github.com/leanflutter/uni_links_desktop/issues
+documentation: https://leanflutter.dev/documentation/uni_links_desktop
 
 platforms:
   macos:
   windows:
 
 environment:
-  sdk: ">=3.1.0 <4.0.0"
-  flutter: ">=3.16.0"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  win32_registry: ^1.1.2
+  win32_registry: ^2.1.0
 
 dev_dependencies:
   dependency_validator: ^3.0.0

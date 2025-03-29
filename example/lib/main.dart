@@ -24,10 +24,10 @@ Future<void> main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
@@ -231,6 +231,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     print(cmd);
 
     await Clipboard.setData(ClipboardData(text: cmd));
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Copied to Clipboard')),
     );

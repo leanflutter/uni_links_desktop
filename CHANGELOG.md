@@ -1,3 +1,7 @@
+## 0.2.0
+
+- [docs] Update documentation
+
 ## 0.1.7
 
 - [macos] Fix implementation to work with Flutter 3.16.0 #15
