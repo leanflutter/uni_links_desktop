@@ -1,6 +1,9 @@
 ## 0.2.0
 
 - [docs] Update documentation
+- [windows] Update win32_registry to ^2.1.0
+- Bump minimum Dart version to 3.7.0
+- Bump minimum Flutter version to 3.29.0
 
 ## 0.1.7
 
